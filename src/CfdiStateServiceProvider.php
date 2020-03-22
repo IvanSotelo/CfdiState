@@ -22,7 +22,7 @@ class CfdiStateServiceProvider extends ServiceProvider
         //     __DIR__.'/migrations' => database_path('migrations')
         // ], 'migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/lang', 'krnos');
+        $this->loadTranslations();
 
         // $this->publishes([
         //     __DIR__.'/lang' => resource_path('lang/vendor/krnos'),
@@ -38,6 +38,14 @@ class CfdiStateServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->mergeConfigFrom(__DIR__ . '/config/fire.php', 'fire');
+    }
+
+    protected function loadTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__.'/lang', 'ivansotelo');
+
+        /*$this->publishes([
+            __DIR__.'/translations' => resource_path('lang/vendor/courier'),
+        ]);*/
     }
 }
