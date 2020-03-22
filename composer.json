@@ -1,5 +1,5 @@
 {
-    "name": "ivan-sotelo/sat-estado-cfdi",
+    "name": "ivansotelo/cfdistate",
     "description": "Consulta el estado de un cfdi en el webservice del SAT",
     "type": "library",
     "scripts": {
@@ -19,18 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "IvanSotelo\\SatEstadoCfdi\\": "src/"
+            "IvanSotelo\\CfdiState\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "IvanSotelo\\SatEstadoCfdi\\Tests\\": "tests/"
+            "IvanSotelo\\CfdiState\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "IvanSotelo\\SatEstadoCfdi\\CfdiStateServiceProvider"
+                "IvanSotelo\\CfdiState\\CfdiStateServiceProvider"
             ]
         }
     },

@@ -1,9 +1,9 @@
 <?php
 
-namespace IvanSotelo\SatEstadoCfdi;
+namespace IvanSotelo\CfdiState;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Event;
+// use Illuminate\Support\Facades\Event;
 
 class CfdiStateServiceProvider extends ServiceProvider
 {
