@@ -6,6 +6,8 @@
  */
 namespace IvanSotelo\CfdiState;
 
+use IvanSotelo\CfdiState\Services\CFDIService;
+use IvanSotelo\CfdiState\Exceptions\CFDIException;
 use PhpCfdi\CfdiExpresiones\DiscoverExtractor;
 
 class CFDIState
@@ -32,7 +34,7 @@ class CFDIState
         $extractor = new DiscoverExtractor();
         $this->expression = $extractor->extract($document);
 
-        //$service = new CFDIService();
+        $this->service = new CFDIService($this->expression);
     }
     
     /**
@@ -52,8 +54,13 @@ class CFDIState
      */
     public function render($xml)
     {
+        $previous = libxml_use_internal_errors(true);
         $xml = simplexml_load_file($xml, 'SimpleXMLElement', 0, $this->type, true);
-
+        
+        if (!$xml) {
+            $errors = $this->getXMLErrorString();
+            throw new CFDIException('No se localizó el archivo CFDI, revisar la información enviada: ' . $errors, 0, null, ['errors' => $errors]);
+        }
         $result = [];
         $this->iterator($xml, $result, "//{$this->type}:Comprobante");
 
@@ -149,14 +156,79 @@ class CFDIState
 
         return null;
     }
-    
-    public function getState()
-    {
-        return $this->data['Certificado'];
-    }
 
     public function getExpression()
     {
         return  $this->expression;
+    }
+
+    public function getSatStatus()
+    {        
+        $result = $this->service->send();
+        if (!isset($result)) {
+            throw new CFDIException('Error en la conexion con el servicio del SAT', 0, null, ['errors' => $result->CodigoEstatus]);
+        }
+
+        $cancelable_types = [
+            'Cancelable sin aceptación' => 'without_acceptance',
+            'Cancelable con aceptación' => 'with_acceptance',
+            'No cancelable' => false,
+            '' => false,
+        ];
+
+        $cancellation_status = [
+            '' => [
+                'label' => '',
+                'canceled' => false,
+            ],
+            'En proceso' => [
+                'label' => 'processing',
+                'canceled' => false,
+            ],
+            'Cancelado con aceptación' => [
+                'label' => 'canceled_with_acceptance',
+                'canceled' => true,
+            ],
+            'Plazo vencido' => [
+                'label' => 'expired_deadline',
+                'canceled' => true,
+            ],
+            'Cancelado sin aceptación' => [
+                'label' => 'canceled_without_acceptance',
+                'canceled' => true,
+            ],
+        ];
+
+        $cfdi_status = [
+            'Vigente' => 'active',
+            'Cancelado' => 'canceled',
+            'No Encontrado' => 'not_found'
+        ];
+
+        $data = (object)[
+            'cfdi_status' => isset($cfdi_status[$result->Estado]) ? $cfdi_status[$result->Estado] : $result->Estado,
+            'cancelable' => $cancelable_types[$result->EsCancelable],
+            'cancellation_status' => $cancellation_status[$result->EstatusCancelacion]['label'],
+            'canceled' => $cancellation_status[$result->EstatusCancelacion]['canceled'],
+            'original_result' => $result
+        ];
+
+
+        return $data;
+    }
+
+    /**
+     * Helper method to format the XML errors into a string.
+     *
+     * @return string
+     */
+    protected static function getXMLErrorString()
+    {
+        $message = '';
+        foreach (libxml_get_errors() as $error) {
+            $message .= trim($error->message);
+        }
+        libxml_clear_errors();
+        return trim($message);
     }
 }
