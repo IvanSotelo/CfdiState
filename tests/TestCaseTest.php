@@ -45,10 +45,9 @@ class TestCaseTest extends OrchestraTestCase
         $this->assertSame('not_found', $cfdi->getSatStatus()->cfdi_status);
     }
 
-    public function test_cant_be_get_file()
-    {
-        $cfdi = new CFDIState('test_fail3.xml');
-        dd($cfdi->getSatStatus());
-        $this->assertSame('not_found', $cfdi->getSatStatus()->cfdi_status);
-    }
+    // public function test_cant_be_get_file()
+    // {
+    //     $cfdi = new CFDIState('test_fail3.xml');
+    //     $this->assertSame('not_found', $cfdi->getSatStatus()->cfdi_status);
+    // }
 }
