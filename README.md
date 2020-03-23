@@ -1,6 +1,4 @@
 # CfdiState
-Consulta el estado de un cfdi en el webservice del SAT
-
 <p align="center">
 <a href="https://travis-ci.org/IvanSotelo/CfdiState"><img src="https://travis-ci.org/IvanSotelo/CfdiState.svg?branch=master" alt="Build Status"></a>
 <a href='https://coveralls.io/github/IvanSotelo/CfdiState?branch=master'><img src='https://coveralls.io/repos/github/IvanSotelo/CfdiState/badge.svg?branch=master' alt='Coverage Status' /></a>
@@ -8,6 +6,7 @@ Consulta el estado de un cfdi en el webservice del SAT
 <a href="https://packagist.org/packages/ivansotelo/cfdistate"><img src="https://poser.pugx.org/ivansotelo/cfdistate/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/ivansotelo/cfdistate"><img src="https://poser.pugx.org/ivansotelo/cfdistate/license.svg" alt="License"></a>
 </p>
+Consulta el estado de un cfdi en el webservice del SAT
 
 ### Instalación
 
