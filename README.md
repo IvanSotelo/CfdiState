@@ -1,4 +1,5 @@
 # CfdiState
+Consulta el estado de un cfdi en el webservice del SAT
 
 <p align="center">
 <a href="https://travis-ci.org/IvanSotelo/CfdiState"><img src="https://travis-ci.org/IvanSotelo/CfdiState.svg?branch=master" alt="Build Status"></a>
