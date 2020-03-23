@@ -28,8 +28,7 @@ Agregar el Service Provider en `config/app.php`
 ### Configuración
 
 ```shell
-php artisan vendor:publish --provider="IvanSotelo\CfdiState\CfdiStateServiceProvider
-" --tag=config
+php artisan vendor:publish --provider="IvanSotelo\CfdiState\CfdiStateServiceProvider" --tag=config
 ```
 
 En el archivo .env asignar el modo produccion.
