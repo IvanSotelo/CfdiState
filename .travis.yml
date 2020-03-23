@@ -2,7 +2,6 @@ language: php
 php:
   - "7.3"
   - "7.2"
-  - "7.1"
 # env:
 #   - PHPUNIT_VERSION=^7 TESTBENCH_VERSION=3.*
 # matrix:

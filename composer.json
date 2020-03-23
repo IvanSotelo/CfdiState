@@ -8,7 +8,7 @@
         "test:coverage": "php-coveralls -v -x clover.xml -o ./logs --exclude-no-stmt"
     },
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "illuminate/support": "^5.7|^6.0",
         "illuminate/config": "^5.7|^6.0",
         "phpcfdi/cfdi-expresiones": "dev-master",
