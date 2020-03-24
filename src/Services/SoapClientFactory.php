@@ -18,6 +18,8 @@ class SoapClientFactory
         // SOAP_RPC (default) or SOAP_DOCUMENT, must be SOAP_RPC
         'style' => SOAP_RPC,
 
+        'cache_wsdl' => WSDL_CACHE_NONE,
+
         // SOAP_ENCODED (default) or SOAP_LITERAL, SOAP_LITERAL is cleaner
         'use' => SOAP_LITERAL,
 
