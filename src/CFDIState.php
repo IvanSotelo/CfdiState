@@ -126,7 +126,7 @@ class CFDIState
 
         $path_parts = explode('//', $path);
 
-        if (ends_with($path, 'Deduccion')) {
+         if (Str::endsWith($path, 'Deduccion')) {
             //    dd($path_parts);
         }
 
